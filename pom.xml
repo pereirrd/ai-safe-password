@@ -29,6 +29,7 @@
     <micronaut.openapi.invoker.package.name>com.password</micronaut.openapi.invoker.package.name> 
     <micronaut.openapi.use.reactive>false</micronaut.openapi.use.reactive> 
     <micronaut.openapi.server.use.auth>false</micronaut.openapi.server.use.auth>
+    <micronaut.openapi.always.use.generate.http.response>true</micronaut.openapi.always.use.generate.http.response>
   </properties>
 
   <repositories>

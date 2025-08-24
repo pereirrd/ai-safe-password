@@ -1,19 +1,23 @@
 package com.password.controller;
 
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Controller;
+
 import com.password.api.AiPasswordApi;
+import com.password.model.PasswordResponse;
 import com.password.model.ValidateRequest;
-import io.micronaut.core.annotation.Nullable;
 import jakarta.validation.Valid;
 
+@Controller
 public class AiPasswordApiImpl implements AiPasswordApi {
 
     @Override
-    public String generate() {
-        return "Hello, World!";
+    public HttpResponse<PasswordResponse> generate() {
+        return HttpResponse.ok(null);
     }
 
     @Override
-    public String validate(@Nullable @Valid ValidateRequest validateRequest) {
-        return "Hello, World!";
+    public HttpResponse<PasswordResponse> validate(@Valid ValidateRequest validateRequest) {
+        return HttpResponse.ok(null);
     }
 }

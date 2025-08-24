@@ -1,0 +1,83 @@
+openapi: 3.0.0 
+info: 
+  description: This is a safe password API
+  version: 1.0.0
+  title: Safe Password API
+  license:
+    name: Apache-2.0
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+tags: 
+  - name: Password
+    description: Generate and validate safe passwords using AI and regular expression
+
+servers:
+  - url: http://localhost:8080
+    description: Local server
+
+paths:
+  /validate:
+    post:
+      tags:
+        - Regular expression Password
+      description: Validate a password with a regular expression
+      operationId: validate
+      summary: Validate a password with a regular expression
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: The password to validate
+                  example: "password123"
+      responses:
+        '200':
+          description: A valid password
+          content:
+            application/json:
+              schema:
+                type: string
+                description: A valid password
+
+  /ai/generate:
+    get:
+      tags:
+        - AI Password
+      description: Generate a safe password using AI
+      operationId: generate
+      summary: Generate a safe password using AI
+      responses:
+        '200':
+          description: A safe password
+          content:
+            application/json:
+              schema:
+                type: string
+                description: A safe password
+  /ai/validate:
+    post:
+      tags:
+        - AI Password
+      description: Validate a password using AI
+      operationId: validate
+      summary: Validate a password using AI
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: The password to validate
+                  example: "password123"
+      responses:
+        '200':
+          description: A valid password
+          content:
+            application/json:
+              schema:
+                type: string
+                description: A valid password

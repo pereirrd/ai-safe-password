@@ -21,6 +21,14 @@
     <micronaut.aot.packageName>com.password.aot.generated</micronaut.aot.packageName>
     <micronaut.runtime>netty</micronaut.runtime>
     <exec.mainClass>com.password.Application</exec.mainClass>
+
+    <micronaut.openapi.generate.server>true</micronaut.openapi.generate.server> 
+    <micronaut.openapi.definition>src/main/resources/swagger.yml</micronaut.openapi.definition> 
+    <micronaut.openapi.api.package.name>com.password.api</micronaut.openapi.api.package.name> 
+    <micronaut.openapi.model.package.name>com.password.model</micronaut.openapi.model.package.name> 
+    <micronaut.openapi.invoker.package.name>com.password</micronaut.openapi.invoker.package.name> 
+    <micronaut.openapi.use.reactive>false</micronaut.openapi.use.reactive> 
+    <micronaut.openapi.server.use.auth>false</micronaut.openapi.server.use.auth>
   </properties>
 
   <repositories>
@@ -57,6 +65,10 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>io.micronaut.validation</groupId>
+      <artifactId>micronaut-validation</artifactId>
+    </dependency>
+    <dependency>
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-http-client</artifactId>
       <scope>test</scope>
@@ -85,10 +97,38 @@
         <configuration>
           <configFile>aot-${packaging}.properties</configFile>
         </configuration>
+        <executions>
+          <execution>
+            <id>default-generate-openapi-generic</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate-openapi-generic</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.6.1</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/generated-sources/openapi/src/main/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

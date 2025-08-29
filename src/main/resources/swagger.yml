@@ -23,6 +23,7 @@ paths:
       operationId: validate
       summary: Validate a password with a regular expression
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -38,8 +39,20 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                description: A valid password
+                $ref: '#/components/schemas/PasswordResponse'
+
+        '422':
+          description: Invalid password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
   /ai/generate:
     get:
@@ -54,8 +67,20 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                description: A safe password
+                $ref: '#/components/schemas/PasswordResponse'
+        '422':
+          description: Invalid password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /ai/validate:
     post:
       tags:
@@ -64,6 +89,7 @@ paths:
       operationId: validate
       summary: Validate a password using AI
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -79,5 +105,41 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                description: A valid password
+                $ref: '#/components/schemas/PasswordResponse'
+        '422':
+          description: Invalid password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    PasswordResponse:
+      type: object
+      properties:
+        password:
+          type: string
+          description: The password
+        status:
+          type: string
+          description: The status of the response
+          enum:
+            - VALID
+            - INVALID
+            - ERROR
+        message:
+          type: string
+          description: The message of the response
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The message of the response

@@ -3,11 +3,10 @@
     "configurations": [
         {
             "name": "Run Micronaut Application",
-            "type": "shell",
             "request": "launch",
+            "type": "java",
             "command": "./mvnw",
             "args": ["mn:run"],
-            "group": "build",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -15,9 +14,6 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false
-            },
-            "options": {
-                "cwd": "${workspaceFolder}"
             }
         }
     ]

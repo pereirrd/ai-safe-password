@@ -6,7 +6,9 @@
             "request": "launch",
             "type": "java",
             "command": "./mvnw",
-            "args": ["mn:run"],
+            "args": [
+                "mn:run"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -14,7 +16,8 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false
-            }
+            },
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

@@ -1,4 +1,4 @@
-package com.password.domain.ai;
+package com.password.domain.ai.validator;
 
 import dev.langchain4j.service.SystemMessage;
 import io.micronaut.langchain4j.annotation.AiService;

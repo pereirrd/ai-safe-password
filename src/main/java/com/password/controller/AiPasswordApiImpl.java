@@ -4,7 +4,8 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 
 import com.password.api.AiPasswordApi;
-import com.password.domain.ai.AIPasswordValidatorAdapter;
+import com.password.domain.ai.creator.AIPasswordCreatorDecorator;
+import com.password.domain.ai.validator.AIPasswordValidatorDecorator;
 import com.password.model.PasswordResponse;
 import com.password.model.PasswordResponseStatus;
 import com.password.model.ValidateRequest;
@@ -19,12 +20,23 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class AiPasswordApiImpl implements AiPasswordApi {
 
-    private final AIPasswordValidatorAdapter aiPasswordValidatorAdapter;
+    private final AIPasswordValidatorDecorator aiPasswordValidatorAdapter;
+    private final AIPasswordCreatorDecorator aiPasswordCreatorAdapter;
 
     @Override
     public HttpResponse<PasswordResponse> generate() {
-        log.info("Generating AI password");
-        return HttpResponse.ok(null);
+        try {
+            log.info("Generating AI password");
+            return HttpResponse.ok(aiPasswordCreatorAdapter.generateAndValidatePassword());
+        } catch (Exception exception) {
+            log.error("Error during password creation", exception);
+
+            var errorResponse = HttpResponseUtils.createPasswordResponse(
+                    "invalid - Sorry, the AI creator is having issues right now!",
+                    null, PasswordResponseStatus.ERROR);
+
+            return HttpResponse.serverError(errorResponse);
+        }
     }
 
     @Override

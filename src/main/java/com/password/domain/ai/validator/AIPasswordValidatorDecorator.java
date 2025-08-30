@@ -1,4 +1,4 @@
-package com.password.domain.ai;
+package com.password.domain.ai.validator;
 
 import com.password.model.PasswordResponse;
 
@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Bean
 @Slf4j
 @RequiredArgsConstructor
-public class AIPasswordValidatorAdapter {
+public class AIPasswordValidatorDecorator {
 
     private final AIPasswordValidator aiPasswordValidator;
 

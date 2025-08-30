@@ -1,4 +1,4 @@
-package com.password.core;
+package com.password.domain.expression;
 
 public enum PasswordRules {
     AT_LEAST_RULES("Password must contain at least one uppercase letter, at least one lowercase letter, at least one number, at least one special character"),

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.password</groupId>
   <artifactId>ai-safe-password</artifactId>
@@ -22,12 +23,12 @@
     <micronaut.runtime>netty</micronaut.runtime>
     <exec.mainClass>com.password.Application</exec.mainClass>
 
-    <micronaut.openapi.generate.server>true</micronaut.openapi.generate.server> 
-    <micronaut.openapi.definition>src/main/resources/swagger.yml</micronaut.openapi.definition> 
-    <micronaut.openapi.api.package.name>com.password.api</micronaut.openapi.api.package.name> 
-    <micronaut.openapi.model.package.name>com.password.model</micronaut.openapi.model.package.name> 
-    <micronaut.openapi.invoker.package.name>com.password</micronaut.openapi.invoker.package.name> 
-    <micronaut.openapi.use.reactive>false</micronaut.openapi.use.reactive> 
+    <micronaut.openapi.generate.server>true</micronaut.openapi.generate.server>
+    <micronaut.openapi.definition>src/main/resources/swagger.yml</micronaut.openapi.definition>
+    <micronaut.openapi.api.package.name>com.password.api</micronaut.openapi.api.package.name>
+    <micronaut.openapi.model.package.name>com.password.model</micronaut.openapi.model.package.name>
+    <micronaut.openapi.invoker.package.name>com.password</micronaut.openapi.invoker.package.name>
+    <micronaut.openapi.use.reactive>false</micronaut.openapi.use.reactive>
     <micronaut.openapi.server.use.auth>false</micronaut.openapi.server.use.auth>
     <micronaut.openapi.always.use.generate.http.response>true</micronaut.openapi.always.use.generate.http.response>
   </properties>
@@ -40,6 +41,16 @@
   </repositories>
 
   <dependencies>
+    <!-- AI dependencies -->
+    <dependency>
+      <groupId>io.micronaut.langchain4j</groupId>
+      <artifactId>micronaut-langchain4j-openai</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.langchain4j</groupId>
+      <artifactId>micronaut-langchain4j-core</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-http-server-netty</artifactId>
@@ -89,7 +100,21 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Lombok dependency -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -108,10 +133,22 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Enforcer plugin disabled due to configuration issues with CheckSnakeYaml rule
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
+        <configuration>
+          <rules>
+            <requireMavenVersion>
+              <version>[3.6.0,)</version>
+            </requireMavenVersion>
+            <requireJavaVersion>
+              <version>[21,)</version>
+            </requireJavaVersion>
+          </rules>
+        </configuration>
       </plugin>
+      -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -139,6 +176,16 @@
           <!-- <useIncrementalCompilation>false</useIncrementalCompilation> -->
 
           <annotationProcessorPaths combine.children="append">
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.30</version>
+            </path>
+            <path>
+              <groupId>io.micronaut.langchain4j</groupId>
+              <artifactId>micronaut-langchain4j-processor</artifactId>
+            </path>
+
             <path>
               <groupId>io.micronaut</groupId>
               <artifactId>micronaut-http-validation</artifactId>

@@ -205,7 +205,7 @@ micronaut:
 
 langchain4j:
   open-ai:
-    api-key: ${OPENAI_API_KEY}
+    api-key: ${OPENAI_API_KEY} # from .env file
     model-name: gpt-4o-mini
 ```
 

@@ -116,27 +116,23 @@ ai-safe-password/
    mvn clean compile
    ```
 
-4. **Run the application**
+4. **Use VSCode to run the application, or**
    ```bash
    mvn mn:run
    ```
 
-5. **Access the API**
-   - **Swagger UI**: http://localhost:8080/swagger-ui
-   - **OpenAPI Spec**: http://localhost:8080/swagger/ai-safe-password-0.0.yml
-
-## 📚 API Documentation
+## 🧪 Testing
 
 ### Endpoints
 
 #### AI Password Generation
-```http
+```
 curl --location 'http://localhost:8080/ai/generate'
 ```
 Generates a secure password using AI and validates it before returning.
 
 #### AI Password Validation
-```http
+```
 curl --location 'http://localhost:8080/ai/validate' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -145,7 +141,7 @@ curl --location 'http://localhost:8080/ai/validate' \
 ```
 
 #### Regular Expression Password Validation
-```http
+```
 curl --location 'http://localhost:8080/validate' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -162,8 +158,6 @@ curl --location 'http://localhost:8080/validate' \
 }
 ```
 
-## 🧪 Testing
-
 ### Run Tests
 ```bash
 mvn test
@@ -176,9 +170,10 @@ mvn test
 
 ## 📖 Documentation
 
-### Development Documentation
-- **[Development Chat](docs/chat.md)**: Complete development conversation and technical decisions
-- **[API Request Examples](docs/requests.md)**: Practical examples of API usage
+
+### Access the API Documentation
+   - **Swagger UI**: http://localhost:8080/swagger-ui
+   - **OpenAPI Spec**: http://localhost:8080/swagger/ai-safe-password-0.0.yml
 
 ### 🗣️ Development Chat
 For a detailed look at the development process, technical decisions, and problem-solving approaches, check out our **[Development Chat](docs/chat.md)**. This document contains:

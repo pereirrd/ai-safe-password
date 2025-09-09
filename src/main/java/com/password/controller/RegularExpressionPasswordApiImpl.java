@@ -3,8 +3,8 @@ package com.password.controller;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 
-import core.HttpResponseUtils;
 import com.password.api.RegularExpressionPasswordApi;
+import com.password.core.HttpResponseUtils;
 import com.password.domain.expression.PasswordValidator;
 import com.password.model.PasswordResponse;
 import com.password.model.PasswordResponseStatus;

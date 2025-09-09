@@ -1,4 +1,4 @@
-package core;
+package com.password.core;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

@@ -4,13 +4,13 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 
 import com.password.api.AiPasswordApi;
+import com.password.core.HttpResponseUtils;
 import com.password.domain.ai.creator.AIPasswordCreatorDecorator;
 import com.password.domain.ai.validator.AIPasswordValidatorDecorator;
 import com.password.model.PasswordResponse;
 import com.password.model.PasswordResponseStatus;
 import com.password.model.ValidateRequest;
 
-import core.HttpResponseUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

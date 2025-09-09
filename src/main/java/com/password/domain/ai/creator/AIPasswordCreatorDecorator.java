@@ -1,10 +1,10 @@
 package com.password.domain.ai.creator;
 
+import com.password.core.HttpResponseUtils;
 import com.password.domain.ai.validator.AIPasswordValidator;
 import com.password.model.PasswordResponse;
 import com.password.model.PasswordResponseStatus;
 
-import core.HttpResponseUtils;
 import io.micronaut.context.annotation.Bean;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,3 +1,5 @@
+[Português](README.pt-br.md) | [Español](README.es.md)
+
 # AI Safe Password API
 
 A modern, AI-powered password generation and validation service built with **API-First** approach using Micronaut and LangChain4j.
@@ -227,7 +229,4 @@ langchain4j:
 
 ---
 
-
 **Built with ❤️ using API-First approach and modern Java technologies**
-
-
